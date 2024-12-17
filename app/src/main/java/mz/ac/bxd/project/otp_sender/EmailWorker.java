@@ -29,8 +29,9 @@ public class EmailWorker extends Worker {
         String body = getInputData().getString("body");
 
         try {
-            final String fromEmail = "SEUEMAIL";
-            final String password = "SuaAPPMAIL";
+            final String fromEmail = "bxdynamicsolutions@gmail.com";  // E-mail
+            final String password = "ovsw xmmp lyue focf";  // Senha do e-mail ou senha de aplicativo
+
             Properties props = new Properties();
             props.put("mail.smtp.host", "smtp.gmail.com");
             props.put("mail.smtp.port", "587");
@@ -46,7 +47,7 @@ public class EmailWorker extends Worker {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(fromEmail));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("SENDERMAIL"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("aelias7@gmail.com"));
             message.setSubject(subject);
             message.setText(body);
 
